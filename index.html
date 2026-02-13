@@ -3,28 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine</title>
+    <title>Valentine Interactive Buttons</title>
     <style>
-        /* Improve button styling */
-        .yes-button {
-            background-color: #ff69b4; /* Pink background */
-            color: white; /* White text */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button {
+            padding: 15px 25px;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
+            margin: 10px;
             cursor: pointer;
+            z-index: 2;
             position: relative;
-            z-index: 10; /* Ensures visibility above other elements */
+            font-size: 16px;
         }
-        
-        .yes-button:hover {
-            background-color: #ff1493; /* Darker pink on hover */
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Happy Valentine's Day!</h1>
-    <button class="yes-button">Yes</button>
+    <h1>Do you want to be my Valentine?</h1>
+    <button class="button yes">Yes</button>
+    <button class="button no">No</button>
 </body>
 </html>
