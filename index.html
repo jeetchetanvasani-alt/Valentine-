@@ -3,126 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine? ❤️</title>
+    <title>Valentine</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&display=swap');
-
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            font-family: 'Quicksand', sans-serif;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        #container {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            z-index: 10;
-        }
-
-        h1 {
-            font-family: 'Pacifico', cursive;
-            color: #d81b60;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        #gif-container img {
-            width: 250px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            position: relative;
-            height: 60px;
-            align-items: center;
-        }
-
-        button {
-            padding: 12px 30px;
-            font-size: 1.2rem;
+        /* Improve button styling */
+        .yes-button {
+            background-color: #ff69b4; /* Pink background */
+            color: white; /* White text */
             border: none;
-            border-radius: 50px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
             cursor: pointer;
-            transition: transform 0.2s;
-            font-weight: bold;
+            position: relative;
+            z-index: 10; /* Ensures visibility above other elements */
         }
-
-        #yesBtn {
-            background-color: #ff4081;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
-        }
-
-        #yesBtn:hover {
-            transform: scale(1.1);
-        }
-
-        #noBtn {
-            background-color: #9e9e9e;
-            color: white;
-            position: absolute; /* Needed for the jumping logic */
+        
+        .yes-button:hover {
+            background-color: #ff1493; /* Darker pink on hover */
         }
     </style>
 </head>
 <body>
-
-    <div id="container">
-        <div id="gif-container">
-            <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56Znd6bjZueG56Znd6bjZueG56Znd6bjZueG56Znd6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/qUIm5wu6LAAog/giphy.gif" alt="Puppy Eyes">
-        </div>
-        <h1 id="question">Will you be my Valentine?</h1>
-        
-        <div class="btn-group">
-            <button id="yesBtn" onclick="celebrate()">Yes!</button>
-            <button id="noBtn" onmouseover="moveButton()" ontouchstart="moveButton()">No</button>
-        </div>
-    </div>
-
-    <script>
-        function moveButton() {
-            const noBtn = document.getElementById('noBtn');
-            
-            // Calculate random positions
-            // Subtracting button width/height to keep it in view
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-        }
-
-        function celebrate() {
-            const mainGif = document.getElementById('main-gif');
-            const question = document.getElementById('question');
-            const noBtn = document.getElementById('noBtn');
-            const yesBtn = document.getElementById('yesBtn');
-
-            // Change to Happy Celebration GIF
-            mainGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56Znd6bjZueG56Znd6bjZueG56Znd6bjZueG56Znd6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/kyLYXonQpkUsDIMvKm/giphy.gif";
-            
-            question.innerHTML = "Yay! I knew you'd say yes! ❤️";
-            
-            // Hide the No button and the Yes button
-            noBtn.style.display = 'none';
-            yesBtn.style.display = 'none';
-
-            // Add some confetti effect (optional)
-            document.body.style.backgroundColor = "#f48fb1";
-        }
-    </script>
+    <h1>Happy Valentine's Day!</h1>
+    <button class="yes-button">Yes</button>
 </body>
 </html>
