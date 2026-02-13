@@ -3,50 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day</title>
+    <title>Valentine's Day Page</title>
     <style>
         body {
-            background: linear-gradient(to right, #ff7e5f, #feb47b); /* romantic pink gradient */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff4d4d, #ff9999);
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
             text-align: center;
-            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .heart {
+            font-size: 50px;
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(-10px); }
+            50% { transform: translateY(10px); }
         }
         img {
-            width: 300px; /* Set a fixed width for GIFs */
+            width: 200px;
+            transition: all 0.5s ease;
         }
-        .yes-button {
-            font-size: 20px;
-            transition: transform 0.2s;
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
         }
-        .no-button {
-            display: none; /* Hide the button that moves */
+        #no-button {
+            background: #ff4d4d;
+            color: white;
+        }
+        #yes-button {
+            background: #4dff4d;
+            color: white;
         }
     </style>
 </head>
 <body>
-
-    <h1>Happy Valentine's Day!</h1>
-    <img id="cat-gif" src="https://media.giphy.com/media/JIX8t1j0ZTN9S/giphy.gif" alt="Cat GIF" />
-    
-    <div>
-        <button class="yes-button" id="yes-button">Yes!</button>
-        <button class="no-button" id="no-button">No!</button>
+    <div class="container">
+        <h1>Valentine's Day Proposal</h1>
+        <div class="heart" id="floating-heart">❤️</div>
+        <img id="cat-gif" src="smiling_cat.gif" alt="Smiling Cat">
+        <div id="begging-message">Please say yes!</div>
+        <button id="no-button">No</button>
+        <button id="yes-button">Yes</button>
     </div>
-    
-    <p id="message" style="display:none;">Please, please say yes!</p>
-
     <script>
-        let noClickCount = 0;
+        let yesCount = 0;
+        const noButton = document.getElementById('no-button');
+        const yesButton = document.getElementById('yes-button');
+        const catGif = document.getElementById('cat-gif');
+        const beggingMessage = document.getElementById('begging-message');
+        const heart = document.getElementById('floating-heart');
 
-        document.getElementById('yes-button').addEventListener('click', () => {
-            alert("Yay! Thank you!");
+        function randomPosition() {
+            const x = Math.floor(Math.random() * (window.innerWidth - 100));
+            const y = Math.floor(Math.random() * (window.innerHeight - 100));
+            noButton.style.position = 'absolute';
+            noButton.style.left = x + 'px';
+            noButton.style.top = y + 'px';
+        }
+
+        noButton.addEventListener('click', () => {
+            yesCount++;
+            catGif.src = 'crying_cat.gif';
+            randomPosition();
+            if (yesCount <= 3) {
+                beggingMessage.textContent = ['Please say yes!', "You're breaking my heart!"][yesCount - 1];
+            }
+            yesButton.style.transform = `scale(${1 + yesCount * 0.15})`;
         });
 
-        document.getElementById('no-button').addEventListener('click', () => {
-            noClickCount++;
-            document.getElementById('yes-button').style.transform = 'scale(' + (1 + noClickCount * 0.1) + ')';
-            document.getElementById('message').style.display = 'block';
+        yesButton.addEventListener('click', () => {
+            alert('Yay! Celebration! 🎉');
+            // Add confetti animation here
         });
+
+        randomPosition();
     </script>
-
 </body>
 </html>
