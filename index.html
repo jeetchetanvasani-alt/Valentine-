@@ -3,36 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Interactive Buttons</title>
+    <title>Valentine's Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
+            font-family: Arial, sans-serif;
         }
-        .button {
-            padding: 15px 25px;
-            border: none;
-            border-radius: 5px;
+        #messages {
+            margin: 20px;
+        }
+        button {
+            width: 100px;
             margin: 10px;
-            cursor: pointer;
-            z-index: 2;
-            position: relative;
+            padding: 10px;
             font-size: 16px;
         }
-        .yes {
-            background-color: green;
-            color: white;
-        }
-        .no {
-            background-color: red;
-            color: white;
+        #catImage {
+            width: 300px;  /* Adjust based on desired image size */
         }
     </style>
 </head>
 <body>
-    <h1>Do you want to be my Valentine?</h1>
-    <button class="button yes">Yes</button>
-    <button class="button no">No</button>
+    <h1>Happy Valentine's Day!</h1>
+    <img id="catImage" src="smiling-cat.gif" alt="Smiling Cat">
+    
+    <div id="messages">
+        <p id="beggingMessage">Please click "Yes"!</p>
+    </div>
+    
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
+
+    <script>
+        const messages = [
+            "Please click 'Yes'! ❤️",
+            "It's really important to me! 😿",
+            "Don't leave me hanging! 🥺",
+            "Just one click! 🐱",
+        ];
+        let currentMessageIndex = 0;
+
+        document.getElementById('noButton').addEventListener('click', () => {
+            currentMessageIndex++;
+            if (currentMessageIndex < messages.length) {
+                document.getElementById('beggingMessage').innerText = messages[currentMessageIndex];
+                document.getElementById('catImage').src = 'crying-cat.gif'; // Change to crying cat GIF
+            } else {
+                document.getElementById('beggingMessage').innerText = "Alright... 😢";
+            }
+        });
+
+        document.getElementById('yesButton').addEventListener('click', () => {
+            document.getElementById('beggingMessage').innerText = "Thank you! 💖";
+            document.getElementById('catImage').src = 'smiling-cat.gif'; // Keep smiling cat GIF
+        });
+    </script>
 </body>
 </html>
