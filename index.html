@@ -3,60 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Page</title>
+    <title>Valentine's Day</title>
     <style>
         body {
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* romantic pink gradient */
             text-align: center;
             font-family: Arial, sans-serif;
         }
-        #messages {
-            margin: 20px;
+        img {
+            width: 300px; /* Set a fixed width for GIFs */
         }
-        button {
-            width: 100px;
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
+        .yes-button {
+            font-size: 20px;
+            transition: transform 0.2s;
         }
-        #catImage {
-            width: 300px;  /* Adjust based on desired image size */
+        .no-button {
+            display: none; /* Hide the button that moves */
         }
     </style>
 </head>
 <body>
+
     <h1>Happy Valentine's Day!</h1>
-    <img id="catImage" src="smiling-cat.gif" alt="Smiling Cat">
+    <img id="cat-gif" src="https://media.giphy.com/media/JIX8t1j0ZTN9S/giphy.gif" alt="Cat GIF" />
     
-    <div id="messages">
-        <p id="beggingMessage">Please click "Yes"!</p>
+    <div>
+        <button class="yes-button" id="yes-button">Yes!</button>
+        <button class="no-button" id="no-button">No!</button>
     </div>
     
-    <button id="yesButton">Yes</button>
-    <button id="noButton">No</button>
+    <p id="message" style="display:none;">Please, please say yes!</p>
 
     <script>
-        const messages = [
-            "Please click 'Yes'! ❤️",
-            "It's really important to me! 😿",
-            "Don't leave me hanging! 🥺",
-            "Just one click! 🐱",
-        ];
-        let currentMessageIndex = 0;
+        let noClickCount = 0;
 
-        document.getElementById('noButton').addEventListener('click', () => {
-            currentMessageIndex++;
-            if (currentMessageIndex < messages.length) {
-                document.getElementById('beggingMessage').innerText = messages[currentMessageIndex];
-                document.getElementById('catImage').src = 'crying-cat.gif'; // Change to crying cat GIF
-            } else {
-                document.getElementById('beggingMessage').innerText = "Alright... 😢";
-            }
+        document.getElementById('yes-button').addEventListener('click', () => {
+            alert("Yay! Thank you!");
         });
 
-        document.getElementById('yesButton').addEventListener('click', () => {
-            document.getElementById('beggingMessage').innerText = "Thank you! 💖";
-            document.getElementById('catImage').src = 'smiling-cat.gif'; // Keep smiling cat GIF
+        document.getElementById('no-button').addEventListener('click', () => {
+            noClickCount++;
+            document.getElementById('yes-button').style.transform = 'scale(' + (1 + noClickCount * 0.1) + ')';
+            document.getElementById('message').style.display = 'block';
         });
     </script>
+
 </body>
 </html>
